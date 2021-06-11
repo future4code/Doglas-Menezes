@@ -1,0 +1,3 @@
+                   #Aprendizados da semana
+
+  Nessa semana0 a semana de onbording aqui no curso da labenu aprendi sobre **GIT**, **GITHUB**,aprendi a resolver um problema no comando **PUSH** com o **Yzuo** eo professor **Matheus**, foi uma semana conturbarda com algumas dificuldades. pensei em desistir?Claro, mas na dificuldade que temos que nos motivar uns aos outros e a turma ta se apoiando muito com um propósito em comum que é se formar e se preparar pra esse mercado de trabalho. e agora estou aprendendo a usar essa ferramento importante que é o **VScode**.
