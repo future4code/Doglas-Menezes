@@ -87,7 +87,7 @@ console.log ("Seu resultado em Kelvin é:",Resultadok)
 const ValorQLOWAThora = 0.5
 
 const consumo = Number(prompt("qual foi o consumo em Quilowatt-hora?"))
-const desconto = Number(prompt("qual é a porcentagem de desconto?"))
+const desconto = Number(prompt("qunal é a porcetagem de desconto?"))
 
 const Tconsumo = consumo * ValorQLOWAThora
 const PorcentDesconto = (100-desconto) / 100
