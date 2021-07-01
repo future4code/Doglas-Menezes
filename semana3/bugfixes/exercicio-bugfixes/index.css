@@ -74,6 +74,7 @@ div img {
 
 #container-de-descricao {
     padding:130px 220px
+ 
 }
 
 #container-para-comprar {
@@ -100,7 +101,9 @@ div:last-child {
 }
 
 table {
-    width: 60%;
+    width: 100%;
+    text-align: center;
+
 }
 
 td button {
