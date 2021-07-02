@@ -1,0 +1,92 @@
+*{
+  margin:0;
+  font-family: 'Merriweather', serif;
+}
+
+.menu{
+background-color: #4abdac;
+display: flex;
+}
+.menu li{
+  color: #dFDCE3;
+  display: inline-block;
+  text-decoration: none;
+  padding: 25px;
+  margin-right:100px
+}
+
+.abertura{
+  display: flex;
+  height: 40vh;
+  background-color:#FC4a1a ;
+
+}
+.meu-nome{
+  color: #dFDCE3;
+  margin: auto;
+  text-align: center;
+}
+
+.corpo{
+  background-color: rgb(184, 184, 184) ;
+  margin: auto;
+  display: flex;
+}
+.sobre-mim{
+  color: #030303;
+  text-align:center;
+}
+
+.minha-foto{
+  width: 30vh;
+  height: 30 vh;
+  padding: 22px;
+}
+
+.ensino{
+  color: #000000;
+  text-align: left;
+
+}
+.ensino li a{
+  text-decoration: none;
+  padding: 5px 5px;
+}
+.ensino li a:hover{
+  background-color: black;
+}
+
+/* layout da home */
+.layout-home{
+  background-color: rgb(184, 184, 184) ;
+  display: flex;
+  flex-wrap: wrap;
+  color: #030303;
+}
+.layout-home > div{
+flex: 1 1 280px;
+margin: 10px;
+}
+
+.layout-home div img{
+  width: 100%;
+  display: block;
+
+
+}
+.layout-home div p{
+  background-color: igba(0,0,0,0.6);
+
+}
+
+footer{
+  background-color: #4abdac;
+  display: flex;
+height: 10vh;
+}
+
+footer p{
+  color: #dFDCE3;
+  margin: auto;
+  text-align: center;
+}
