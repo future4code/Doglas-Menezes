@@ -1,0 +1,166 @@
+*{
+  margin:0;
+  font-family: 'Merriweather', serif;
+}
+
+.menu{
+background-color: black;
+display: flex;
+}
+.menu li{
+  color: #dFDCE3;
+  display: inline-block;
+  text-decoration: none;
+  padding: 25px;
+  margin-right:100px
+}
+
+.abertura{
+  display: flex;
+  height: 40vh;
+  background-color:#4abdac ;
+  
+}
+.meu-nome{
+  color: #dFDCE3;
+  margin: auto;
+  text-align: center;
+}
+
+.corpo{
+  background-color: rgb(184, 184, 184) ;
+  margin: auto;
+  display: flex;
+}
+.sobre-mim{
+  color: #030303;
+  text-align:center;
+}
+
+.minha-foto{
+  width: 30vh;
+  height: 30 vh;
+  padding: 22px;
+}
+
+.ensino{
+  color: #000000;
+  text-align: left;
+
+}
+.ensino li a{
+  text-decoration: none;
+  padding: 5px 5px;
+}
+.ensino li a:hover{
+  background-color: black;
+}
+
+/* layout da home */
+.layout-home{
+  background-color: rgb(184, 184, 184) ;
+  display: flex;
+  flex-wrap: wrap;
+  color: #030303;
+}
+.layout-home > div{
+flex: 1 1 280px;
+margin: 10px;
+}
+
+.layout-home div img{
+  width: 100%;
+  display: block;
+
+
+}
+.layout-home div p{
+  background-color: igba(0,0,0,0.6);
+
+}
+
+footer{
+  background-color: black;
+  display: flex;
+  height: 10vh;
+}
+
+footer p{
+  color: #dFDCE3;
+  margin: auto;
+  text-align: center;
+}
+
+/* sobre-mim */
+
+.container{
+  background-color: rgb(184, 184, 184);
+  width:100% ;
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.eu{
+  width: 960px;
+
+}
+
+.apresentaçao{
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.photo-figure{
+  width: 160px;
+  height: 160px;
+  
+  border-radius: 50%;
+  overflow: hidden;
+}
+.photo-figure img{
+  width: 100%;
+  filter: grayscale(100%);
+}
+.my-photo{
+  display: flex;
+ justify-content: space-around;
+}
+
+.my-photo li{
+  list-style-type: none;
+} 
+.link-foto:hover .photo-figure img {
+filter: none;
+}
+.descriçao{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display:none
+}
+
+.descriçao:target{
+  display: flex;
+}
+.programaçao{
+  display: flex;
+}
+
+
+.name-da-page{
+  text-transform: uppercase;
+}
+
+
+
+.redes-Sociais a{
+text-decoration:none;
+flex-direction: column;
+
+}
+
+/* pagina de contato */
