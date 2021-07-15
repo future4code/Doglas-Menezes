@@ -45,8 +45,12 @@ class Post extends React.Component {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
-  }
+    numeroComentarios: 0,
+    valorInputComentarioPost:"",
+  };
+   onChangeComentarioPost= (event) =>{
+     this.setState({valorInputComentarioPost: event.target.value});
+   }
 
   onClickCurtida = () => {
     console.log('Curtiu!')
@@ -71,7 +75,6 @@ class Post extends React.Component {
   onClickComentario = () => {
     this.setState({
       comentando: !this.state.comentando,
-      numeroComentarios: this.state.comentando,
       
     
     })
