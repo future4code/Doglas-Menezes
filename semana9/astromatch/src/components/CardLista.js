@@ -2,15 +2,25 @@ import styled from "styled-components"
 
 
 const CardListaDepessoas=styled.div` 
-border: solid black 2px;
+width: 400px;
+height: 400px;
+border: solid green 2px;
+align-items: center;
 `
 
-export default function CardLista(){
+export default function CardLista({choosePerson}){
   
   return(
     <CardListaDepessoas> 
-      <h1>ta foda</h1>
+      <h1>Matchs recebidos</h1>
+      <div><img 
+      Src={choosePerson.photo} alt='foto'/>
+
+      {choosePerson.name}
+      </div>
+    
       
+
     
 
     </CardListaDepessoas>
