@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {useHistory} from 'react-router-dom'
 
 const CardDaViagem= styled.div`
 border: solid 1px black;
@@ -18,15 +19,28 @@ margin: 30px;
 `
 
 export default function AdmHomePage (){ 
+  const history = useHistory()
+
+  const goToCreateTripPage=()=>{
+    history.push("/CreateTripPage")
+  }
+
+  const goToReturnNoTurningBack=()=>{
+    history.replace("/LoginPage")
+  }
+
+  const goToTripDetailsPage=()=>{
+    history.push("/TripDetailsPage")
+  }
   
   return(
   <div>
     <ContainerBotao>
-    <button>Voltar</button>
-    <button>Criar Viagem</button>
+    <button onClick={goToReturnNoTurningBack}>Sair</button>
+    <button onClick={goToCreateTripPage}>Criar Viagem</button>
     </ContainerBotao>
   <h3>Lista com as viagens</h3>
-    <CardDaViagem><p>Nome da viagem</p> <button>X</button></CardDaViagem>
+    <CardDaViagem><p>Nome da viagem</p> <button onClick={goToTripDetailsPage}>Detalhes</button> <button>X</button></CardDaViagem>
     <CardDaViagem><p>Nome da viagem</p> <button>X</button></CardDaViagem>
     <CardDaViagem><p>Nome da viagem</p> <button>X</button></CardDaViagem>
   </div>

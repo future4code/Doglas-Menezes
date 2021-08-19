@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {useHistory} from 'react-router-dom'
 
 const Formulario=styled.div`
 border: solid 1px black;
@@ -12,6 +13,10 @@ flex-direction: column;
 
 
 export default function AplicationFromPage (){ 
+  const history = useHistory()
+  const previousPage = () =>{
+    history.goBack()
+  }
   
   return(
 <Formulario>
@@ -22,8 +27,8 @@ export default function AplicationFromPage (){
   <input placeholder="Texto de candidatura"></input>
   <input placeholder="Profissão"></input>
   <input placeholder="Pais"></input>
-  <button>Volta</button>
-  <button>Increver-se</button>
+  <button onClick={previousPage}>Volta</button>
+  <button>Enviar</button>
 
 </Formulario>
 

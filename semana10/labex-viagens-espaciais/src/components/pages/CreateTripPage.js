@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {useHistory} from "react-router-dom"
 
 
 const CadastroViagem= styled.div`
@@ -12,6 +13,11 @@ flex-direction: column;
 `
 
 export default function CreateTripPage (){ 
+  const history= useHistory()
+   
+  const previousPage=()=>{
+    history.goBack()
+  }
   
   return(
 <CadastroViagem>
@@ -21,7 +27,7 @@ export default function CreateTripPage (){
   <input placeholder="data"></input>
   <input placeholder="descrição"></input>
   <input placeholder="duração"></input>
-  <button>Voltar</button>
+  <button onClick={previousPage}>Voltar</button>
   <button>Criar</button>
 
 </CadastroViagem>

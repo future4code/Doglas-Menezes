@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import {useHistory} from 'react-router-dom'
+import { useEffect } from "react";
+import axios from "axios";
+import { baseUrl } from "../requisitions/Informations";
 
 const CardViagem = styled.div`
 border: solid 1px black;
@@ -14,7 +18,46 @@ height: 200px;
 
 `
 
+const useVerification = () =>{
+  const history = useHistory()
+  
+  useEffect(() => {
+    const token = localStorage.getItem('Token')
+    if (token=== null){
+      console.log("Não está logado")
+      history.push("/LoginPage")
+    }
+
+    },[])
+}
+
 export default function TripeDetailsPage (){ 
+useVerification() 
+
+const history = useHistory()
+
+
+useEffect(()=>{
+  const token= localStorage.getItem('Token')
+   axios.get(`${baseUrl}/trip/id`, 
+   {headers : {
+     auth: token
+   }
+   })
+   .then((res) =>{ 
+     console.log(res.data)
+   })
+   .catch((err)=>{
+     console.log(err)
+   })
+
+},[])
+
+
+  
+  const previousPage = () =>{
+    history.goBack()
+  }
   
   return(
 <CardViagem>
@@ -44,6 +87,7 @@ export default function TripeDetailsPage (){
     <ul>Pessoa</ul>
     <ul>pessoa</ul>
   </ol>
+  <button onClick={previousPage}></button>
 </CardViagem>
 
 );

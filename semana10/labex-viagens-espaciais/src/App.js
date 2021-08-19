@@ -6,18 +6,13 @@ import ListTripPage from './components/pages/ListTripPage';
 import LoginPage from './components/pages/LoginPage';
 import CreateTripPage from './components/pages/CreateTripPage';
 import TripeDetailsPage from './components/pages/TripeDetailsPage';
+import Rotas from './components/routes/Rotas'
 
  export default function App() {
   return (
     <div>
     <h1>LabeX</h1>
-       <Home/>
-       <ListTripPage/>
-       <AplicationFromPage/>
-       <LoginPage/>
-       <AdmHomePage/>
-       <TripeDetailsPage/>
-       <CreateTripPage/>
+       <Rotas/>
     </div>
   );
 }

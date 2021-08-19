@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {useHistory} from "react-router-dom"
 
 
 const MainContainer = styled.div`
@@ -12,12 +13,20 @@ const MainContainer = styled.div`
 `
 
 export default function Home (){ 
+  const history= useHistory()
+
+  const goToListTripPage=()=>{
+    history.push("/ListTripPage")
+  }
+  const goToLoginPage=()=>{
+    history.push("/LoginPage")
+  }
   
   return(
 <MainContainer>
   <h3>ola seja Bem-vindo</h3>
-  <button>Viagens</button>
-  <button>Login</button>
+  <button onClick={goToListTripPage}>Viagens</button>
+  <button onClick={goToLoginPage}>Login</button>
 </MainContainer>
 
 
