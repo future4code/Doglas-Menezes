@@ -29,14 +29,14 @@ import TripeDetailsPage from '../pages/TripeDetailsPage';
         <AplicationFromPage/>
       </Route>
 
-      <Route exact path="/AdmHomePage">
+      <Route exact path="/AdmHomePage/:id">
         <AdmHomePage/>
       </Route>
       <Route exact path="/CreateTripPage">
         <CreateTripPage/>
       </Route>
 
-      <Route exact path="/TripDetailsPage">
+      <Route exact path="/TripDetailsPage/:id">
         <TripeDetailsPage/>
       </Route>
 

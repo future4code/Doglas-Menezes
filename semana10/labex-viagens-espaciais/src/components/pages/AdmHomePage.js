@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import {useHistory} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
+import axios from "axios";
+import { baseUrl } from "../requisitions/Informations";
+import { useEffect, useState } from "react";
 
 const CardDaViagem= styled.div`
 border: solid 1px black;
-width: 400px;
-height: 50px;
+max-width: 400px;
+max-height: 200px;
 margin: 30px;
-display: flex;
 justify-content:space-between;
 `
 const ContainerBotao= styled.div`
@@ -17,9 +19,47 @@ width: 400px;
 justify-content:space-around;
 margin: 30px;
 `
+const Botao= styled.button`
+cursor: pointer;
+`
+
+
 
 export default function AdmHomePage (){ 
   const history = useHistory()
+  const [trips,setTrips] = useState([ ])
+  const params= useParams()
+
+
+
+  useEffect(()=> {
+    axios.get(`${baseUrl}/trips`)
+    .then((res)=>{
+      setTrips(res.data.trips)
+      console.log(res.data)
+    })
+    .catch((err)=>{
+      console.log("Deu Erro",err.data)
+    })
+    },[])
+
+  const deletTrip=(id)=>{
+    const token= localStorage.getItem('Token')
+    axios.del(`${baseUrl}/trips/${id}`,
+      {headers : { 
+        'Content-Type':'application/json',
+        auth : token 
+      }
+    })
+    .then((res)=>{
+       console.log(res)
+    })
+    .catch((err)=>{
+       console.log(err)
+    })
+  }
+
+    
 
   const goToCreateTripPage=()=>{
     history.push("/CreateTripPage")
@@ -29,9 +69,23 @@ export default function AdmHomePage (){
     history.replace("/LoginPage")
   }
 
-  const goToTripDetailsPage=()=>{
-    history.push("/TripDetailsPage")
+  const goToTripDetailsPage=(id)=>{
+    history.push(`/TripDetailsPage/${id}`)
   }
+
+
+
+  const listTheTrip = trips && trips.map ((trip)=>{
+    return <CardDaViagem key={trip.id}>
+      <h2>{trip.name}</h2>
+      <div>
+        <p>Descrição: {trip.description}</p>
+        <p>Planeta: {trip.planet}</p>
+      </div>
+      <Botao><button onClick={() => goToTripDetailsPage(trip.id)}>Detalhes</button></Botao>
+     <Botao><button onChange={() => deletTrip(trip.id)}>X</button></Botao>
+    </CardDaViagem>
+  })
   
   return(
   <div>
@@ -40,9 +94,7 @@ export default function AdmHomePage (){
     <button onClick={goToCreateTripPage}>Criar Viagem</button>
     </ContainerBotao>
   <h3>Lista com as viagens</h3>
-    <CardDaViagem><p>Nome da viagem</p> <button onClick={goToTripDetailsPage}>Detalhes</button> <button>X</button></CardDaViagem>
-    <CardDaViagem><p>Nome da viagem</p> <button>X</button></CardDaViagem>
-    <CardDaViagem><p>Nome da viagem</p> <button>X</button></CardDaViagem>
+    {listTheTrip}
   </div>
 );
 }

@@ -1,21 +1,29 @@
 import styled from "styled-components";
-import {useHistory} from 'react-router-dom'
-import { useEffect } from "react";
+import {useHistory, useParams} from 'react-router-dom'
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../requisitions/Informations";
 
 const CardViagem = styled.div`
 border: solid 1px black;
 width: 400px;
-height: 800px;
+height: 600px;
 margin: 30px;
 `
 
-const CardDoCandidato= styled.div`
+const CardDoCandidatoAprovado= styled.div`
 border: solid 1px black;
-width: 400px;
-height: 200px;
-
+width: 100%;
+max-height: 20%px;
+`
+const CardDoCandidatoPendente= styled.div`
+border: solid 1px black;
+width: 100%;
+max-height: 40%;
+`
+const DIV= styled.div`
+display: flex;
+justify-content:space-around;
 `
 
 const useVerification = () =>{
@@ -23,7 +31,7 @@ const useVerification = () =>{
   
   useEffect(() => {
     const token = localStorage.getItem('Token')
-    if (token=== null){
+    if (token === null){
       console.log("Não está logado")
       history.push("/LoginPage")
     }
@@ -35,17 +43,26 @@ export default function TripeDetailsPage (){
 useVerification() 
 
 const history = useHistory()
+const params= useParams()
+const [detalhe,setDetalhes]= useState({})
+const [candidatosPendentes,setCandidatosPendentes] = useState([])
+const [candidatosAprovados,setCandidatosAprovados] = useState([])
+
+
 
 
 useEffect(()=>{
   const token= localStorage.getItem('Token')
-   axios.get(`${baseUrl}/trip/id`, 
+   axios.get(`${baseUrl}/trip/${params.id}`, 
    {headers : {
      auth: token
    }
    })
    .then((res) =>{ 
-     console.log(res.data)
+     console.log("detalhes",res.data)
+     setDetalhes(res.data.trip)
+     setCandidatosAprovados(res.data.trip.approved)
+     setCandidatosPendentes(res.data.trip.candidates)
    })
    .catch((err)=>{
      console.log(err)
@@ -58,36 +75,43 @@ useEffect(()=>{
   const previousPage = () =>{
     history.goBack()
   }
-  
+
+  const candidatosAprovadosCard = candidatosAprovados && candidatosAprovados.map ((candidato)=>{
+    return <CardDoCandidatoAprovado key={candidato.id}>
+      <div>
+        <strong><p>{candidato.name}</p></strong>
+      </div>
+    </CardDoCandidatoAprovado>
+  })
+
+  const candidatosPendentesCard = candidatosPendentes && candidatosPendentes.map ((candidato)=>{
+    return <CardDoCandidatoPendente key={candidato.id}>
+    <DIV><h2>Candidatos Pendentes</h2><button>Aprovar</button>
+        <button>Reprovado</button></DIV>
+      
+        <div>{candidato.name}</div>
+        <div>Texto da candidatura:{candidato.applicationText}</div>
+        <div>Idade:{candidato.age}</div>
+        <div>Pais de origem{candidato.country}</div>
+        <div>Profissão:{candidato.profession}</div>
+       
+      
+    </CardDoCandidatoPendente>
+  })
+
   return(
-<CardViagem>
-  <h3>Nome da viagem</h3>
+<CardViagem><button onClick={previousPage} >voltar</button>
+  <h2>{detalhe.name}</h2>
     <ol type="none">
-      <ul>Nome</ul>
-      <ul>Descrição</ul>
-      <ul>planeta</ul>
-      <ul>localização</ul>
-      <ul>Duração</ul>
-      <ul>Data</ul>
+      <ul>{detalhe.name}</ul>
+      <ul>Descrição:{detalhe.description}</ul>
+      <ul>planeta:{detalhe.planet}</ul>
+      <ul>Duração em dias:{detalhe.durationInDays}</ul>
+      <ul>Data:{detalhe.date}</ul>
      </ol>
-  <h2>Candidatos Pendentes</h2>
-  <CardDoCandidato>
-    <ol type="none">
-    <ul>Nome</ul>
-    <ul>Idade</ul>
-    <ul>Pais</ul>
-    <ul>Profissão</ul>
-    <ul>Texto da Candidatura</ul>
-    </ol>
-    <button>Aprovar</button>
-    <button>Reprovado</button>
-  </CardDoCandidato>
+  {candidatosPendentesCard}
   <h2>Candidatos Aprovados</h2>
-  <ol>
-    <ul>Pessoa</ul>
-    <ul>pessoa</ul>
-  </ol>
-  <button onClick={previousPage}></button>
+  {candidatosAprovadosCard}
 </CardViagem>
 
 );

@@ -12,7 +12,7 @@ const MainContainer = styled.div`
   flex-direction: column;
 `
 
-export default function Home (){ 
+export default function Home (props){ 
   const history= useHistory()
 
   const goToListTripPage=()=>{

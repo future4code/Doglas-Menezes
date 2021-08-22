@@ -26,7 +26,8 @@ const history = useHistory()
  const onChangePassword = (e) =>{
   setPassword(e.target.value)
  }
- const onSubmitLogin = ()=>{
+ const onSubmitLogin = (e)=>{
+   e.preventDefault()
    console.log(email,password)
    const body = {
      email:email,
@@ -36,7 +37,7 @@ const history = useHistory()
    .then((res)=>{
       console.log(res.data)
       localStorage.setItem('Token',res.data.token)
-      history.push("/AdmHomePage")
+      history.push("/AdmHomePage/:id")
    })
    .catch((err)=>{
      console.log(err)
@@ -52,6 +53,7 @@ const history = useHistory()
   return(
 <AcessoAdm>
   <h3>Acesso Adminstrativo</h3>
+  <form onSubmit={onSubmitLogin}>
   <input placeholder="Email"
   type="email"
   value={email}
@@ -64,7 +66,8 @@ const history = useHistory()
   onChange={onChangePassword}
   ></input>
 
-  <button onClick={onSubmitLogin}>Login</button>
+  <button>Login</button>
+  </form>
 
   <button onClick={previousPage}>Voltar</button>
 

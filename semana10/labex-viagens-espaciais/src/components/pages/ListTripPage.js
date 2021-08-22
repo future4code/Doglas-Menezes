@@ -16,13 +16,13 @@ height: 300px;
 margin: 30px;
 `
 export default function ListTripPage (){
-const [trips,setTrips] = useState([ ])
+const [trips,setTrips] = useState([])
 
 
 useEffect(()=> {
 axios.get(`${baseUrl}/trips`)
 .then((res)=>{
-  setTrips(res.data.trips)
+  setTrips(res.data.trips) 
   console.log(res.data)
 })
 .catch((err)=>{
