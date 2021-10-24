@@ -16,7 +16,7 @@ export default async function login(req: Request, res: Response
 
       const [user]= await connection(userTableName).where({ email})
 
-      const passwordIsCorrect: boolean = compareHash(password,user.password)
+      const passwordIsCorrect: boolean = compareHash(password,user?.password || '')
       if(!user || !passwordIsCorrect){
         res.statusCode=401
         throw new Error("invalid credential")
