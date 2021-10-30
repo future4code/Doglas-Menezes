@@ -1,0 +1,44 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+  "name":"tefi",
+  "email":"tefi@tefi@hotmail.com",
+  "password":"12345"
+}
+
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+  "email":"doglas@doglas@hotmail.com",
+  "password":"1"
+}
+
+###
+# @name getProfile
+GET http://localhost:3003/user/profile
+Authorization: {{login.response.body.token}}
+
+###
+
+GET http://localhost:3003/user/{{getProfile.response.body.id}}/profile
+Authorization: {{login.response.body.token}}
+
+###
+
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+  "title":"bigbig",
+  "description":"Duas big big"
+}
+
+###
+
+GET http://localhost:3003/recipe/4ee84b46-8d18-4ae0-981a-dddfa11efee0
+Authorization: {{login.response.body.token}}
